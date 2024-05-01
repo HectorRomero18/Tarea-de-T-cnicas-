@@ -1,0 +1,817 @@
+//1° Funcion para sumar dos numeros
+function Suma(n1,n2) {
+    let resp = 0;
+    resp = n1 + n2
+    return resp
+}
+console.log(Suma(9,4))
+
+//2° Funcion para restar dos numeros
+function resta(n1,n2) {
+    let resp = 0;
+    resp = n1 - n2
+    return resp
+}
+console.log(resta(3,1))
+
+//3° Funcion para multiplicar dos numeros
+function multiplicar(n1,n2) {
+    let resp = 0;
+    resp = n1 * n2 
+    return resp
+}
+console.log(multiplicar(5,8))
+
+//4° Funcion para dividir dos numeros
+function dividir(n1,n2) {
+    let resp = 0;
+    resp = n1 / n2 
+    return resp
+}
+console.log(dividir(28,4))
+
+//5° Funcion para calcular el modulo de dos numeros
+function mod(num1,num2) {
+    let r = 0
+    r = num1 % num2
+    return r
+}
+console.log(mod(10,3))
+
+//6° Funcion anonima que eleve un numero al cuadrado
+let cuadrado = function(num){
+    let respuesta = num * num
+    return respuesta
+}
+console.log(cuadrado(3))
+
+//7° Funcion anonima para convertir grados Celsius a Fahrenheit
+let Grados = function(grado){
+    let Fahrenheit = grado * 1.8 + 32
+    return Fahrenheit
+}
+console.log(Grados(30))
+
+//8° Funcion anonima para calcular el perimetro de un rectangulo
+let Perimeter = function(base,Heigth){
+    if (base <= 0 || Heigth <= 0) {
+        return "La base y la altura deben de ser positivos"
+    }else{
+     let perimeter = 2 * (base + Heigth)
+     return perimeter
+    }
+}
+console.log(Perimeter(1,4))
+
+//9° Funcion anonima para determinar si un numero es par o impar
+let PairorImapair = function(num){
+    if (num < 0){
+        return "El numero debe de ser positivo"
+    }
+    return num % 2 == 0 
+}
+console.log(PairorImapair(8))
+
+// 10° Funcion anonima que devuelva el numero mayor
+let mayor = function(n1,n2){
+    if (n1 > n2) {
+        return  n1;
+    }else{
+        return  n2;
+    }
+}
+console.log(mayor(32,10))
+
+//11° Funcion flecha que calcule el area de un circulo
+const area = (radio) => 3.14 * radio * radio;
+const resp = area(2);
+console.log(resp)
+
+//12° Funcion flecha que convierta de kilometros a millas 
+const millas = (Kilometer) => Kilometer * 0.621371;
+const r = millas(50)
+console.log(r)
+
+//13° Funcion flecha que retorne el nombre y el apellido
+const names = (name,apellido) => name + " " + apellido;
+const nameapellido = names("Hector","Romero")
+console.log(nameapellido)
+
+//14°  Funcion flecha para verificar si un texto tiene "a"
+const text = (texto) => {
+const textoMinuscula = texto.toLowerCase()
+for (let i = 0; i < textoMinuscula.length; i++) {
+   if (textoMinuscula[i] === "a") {
+    return true
+   }
+}
+return false
+}
+const text1 = "Hector"
+console.log(text(text1))
+
+//15° Funcion flecha que determine cuantos elementos de un arreglo son numeros
+const array = (array1) =>{
+    let contador = 0
+    for (let i = 0; i < array1.length; i++) {
+       if ( typeof array1[i] == 'number') {
+         contador++
+       }
+        
+    }
+    return contador
+}
+const respuestas = ["hola", 12, "holaaa", 67,'hector']
+console.log(array(respuestas))
+
+// 16° y 17° Funcion de orden superior que tome una funcion y la aplique a todos los elementos de un array
+// function filter_list(list,callback) {
+//     let newArray = []
+//     for (let i = 0; i < list.length; i++) {
+//        callback(list[i]) ? newArray.push(list[i]) : null;
+        
+//     }
+//     return newArray
+    
+// }
+// lista_nombres = ["Hector", "Fernando", "David", "Ericka"]
+// function nombres(nombre){
+//     return nombre.toUpperCase()
+// }
+// let nombres1 = filter_list(lista_nombres, nombres)
+// console.log(nombres1)
+
+// lista_numbers = [12,45,98,22]
+// function numeros(numero){
+//     return numero * numero
+// }
+// let Numbers = filter_list(lista_numbers, numeros)
+// console.log(Numbers)
+function Principal(array,func) {
+    let newArray = [];
+    for (const element of array){
+        newArray.push(func(element))
+    }
+    return newArray
+}
+const ElementArray = [2,4,6,7]
+const alCuadrado = Principal(ElementArray, (num)=> num * num)
+console.log(alCuadrado);
+
+const ElementMayus = ['hector', 'raul', 'romero']
+const NewMayus = Principal(ElementMayus, (palabra) => palabra.toUpperCase())
+console.log(NewMayus);
+
+//18° Funcion de orden superior que retorne una nueva funcion incrementadora
+function increment(number) {
+    return function incrementar(valor){
+        return valor + number
+    }
+    
+}
+const incrementar7 = increment(7)
+const resps = incrementar7(6)
+console.log(resps)
+
+//19° Funcion de orden superior que tome dos funciones como argumento y elija una para ejecutar basada en una condicion
+function segunCondicion(condicion, Funcion1, Funcion2){
+    if (condicion){
+        return Funcion1()
+    }else{
+        return Funcion2()
+    }
+}
+const opcion = () => true;
+const Hola = () => console.log("Hola");
+const Adios = () => console.log("Adios");
+
+const resultado1 = segunCondicion(opcion, Hola, Adios)
+console.log(resultado1)
+//const resultado2 = segunCondicion(false, Hola, Adios)
+//console.log(resultado2)
+
+//20° Funcion de orden superior que modifique unn objeto utilizando otra funcion proporcionada
+function Modification(objeto, FuncionModificadora){
+    FuncionModificadora(objeto)
+    return objeto
+}
+const Compu = {
+    Fabrica: "HP",
+    color: "Verde",
+    tamaño: "Grande",
+}
+function AgregarPrecio(precio){
+    precio.AgregarPrecio = "650$";
+}
+const Modificado = Modification(Compu, AgregarPrecio);
+console.log(Modificado);
+
+//21° Funcion constructora para un objeto llamado Coche 
+function Coche(marca,modelo,Año){
+    this.marca = marca;
+    this.Modelo = modelo;
+    this.Año = Año;
+
+}
+let Auto = new Coche("Nissan", "Nissan Sport V3", "2023")
+console.log(Auto)
+
+//22° Funcion constructora para un objeto llamado Libro
+function Libro(titulo, autor, Año_Publicacion){
+        this.titulo = titulo;
+        this.autor = autor; 
+        this.Año_Publicacion = Año_Publicacion;
+    
+    }
+    let Libros = new Libro("Las Flipantes Aventuras de Pablito y su colega Perico", "Jacinto", "2023")
+    console.log(Libros)
+
+//23° Funcion constructora para un objeto llamado Usuario
+function Usuarios(Name,Email,password){
+        this.Name = Name;
+        this.Email = Email;
+        this.password = password;
+    }
+    let Usuario = new Usuarios("Hector", "raulromero123@gmail.com", "1234567")
+    console.log(Usuario)
+
+//24° Funcion constructora para un objeto llamado Producto
+function Productos(Name,Precio,Cantidad){
+        this.Name = Name,
+        this.Precio = Precio;
+        this.Cantidad = Cantidad;
+    }
+    let Producto = new Productos("Paracetamol", "1.00$", "10")
+    console.log(Producto)
+
+//25° Funcion constructora para un objeto llamado Estudiante
+function Estudiantes(Name,Matricula,Carreara){
+        this.Name = Name;
+        this.Matricula = Matricula;
+        this.Carrera = Carreara;
+    
+    }
+    let Est = new Estudiantes("Hector", "XXX", "Ingenieria de Software")
+    console.log(Est)
+
+//26° Funcion recursiva para calcular el factorial de un numero
+function Factorial(n) {
+    if (n == 0) {
+        return 1
+    }else{
+        return n * Factorial(n-1)
+    }
+}
+console.log(Factorial(12))
+
+//27° Funcion recursiva que sume todos los numeros hasta un numero dado
+function SumaRecursiva(n){
+    if (n == 0) {
+        return 0
+    }else{
+        return n + SumaRecursiva(n - 1)
+    }
+}
+console.log(SumaRecursiva(8));
+
+//28° Funcion recursiva que encuentre el minimo comun multiplo de dos numeros
+function MCD(a,b){
+    if (b == 0){
+        return a;
+    }else {
+        return MCD(b, a % b);
+    }
+}
+let mcd = MCD(22,10);
+console.log(mcd);
+
+//29° Funcion recursiva que imprima la secuencia de fibonacci de un numero dado
+function Fibonacci(n){
+if (n < 2){
+    return n
+}else{
+    return (Fibonacci(n - 1) + Fibonacci(n - 2)) 
+}
+}
+// for (let i = 0; i <= 10; i++) {
+//     console.log(Fibonacci(i));
+//   }
+let Fibo = Fibonacci(11)
+console.log(Fibo)
+
+//30° Funcion recursiva que invierta una cadena de texto
+function Inverse(cadena){
+    if (cadena.length == 0){
+        return "";
+    }else{
+        return cadena[cadena.length - 1] + Inverse(cadena.slice(0,cadena.length - 1)); 
+    }
+}
+let Cade = Inverse("Hola");
+console.log(Cade);
+
+//31° Demuestra el uso de una variable global modificandola dentro de una funcion
+let global = 20
+function local(){
+   let  global = [1,2,3,4,5,6,7,8]
+   let array = []
+   for (let i = 0; i < global.length; i++) {
+    if (global[i] % 2 == 0){
+        array.push(global[i])
+    }
+   }
+   return array
+} 
+console.log(local())
+
+//32° Escribe un codigo donde la variable local oculte a la variable global del mismo nombre
+let GLOBAL = "Hola Mundo!!";
+function LaLocal(){
+    let GLOBALs = "Hola Mundo!!";
+    return GLOBALs;
+}
+console.log(LaLocal());
+
+//33° Escribe mediante un codigo como las variable locales pueden evitar conflictos de nombres
+let papeada = "Que pelota Gerson";
+function Conflic(){
+    let papeada = "Que pelota Jairzinho";
+
+    // Parte para el ejercicio 35
+    let papeada2 = "Esto es para el ejercicio 35°"
+    // Parte para el ejercicio 35 
+
+    return papeada;
+}
+console.log(Conflic())
+console.log(papeada);
+
+//34° Implementa un contador utilizando una variable global
+let contador = 1
+function Count() {
+    let counter = 1
+    let max = 20
+   for (let i = counter; i < max; i++) {
+   contador++;
+}
+ return contador
+}
+console.log(Count())
+
+//35° Crea un funcion que intente modificar una variable definida en otra funcion
+function Modicar2(){
+    // Voy a utilizar la funcion "Conflic" para este ejercicio
+    let papeada2 = "Papeada termonuclear"
+    return papeada2
+}
+console.log(Modicar2())
+
+//36° Escribe una funcion que determine si un año es bisiesto
+function bisiesto(año){
+    let bisi = "El año es bisiesto"
+    let Nobisi = "El año no es bisiesto"
+    if (año % 4 == 0 && año % 100 != 0 || año % 400 == 0){
+     return bisi
+    }else{
+        return Nobisi
+    }
+}
+console.log(bisiesto(2022))
+
+//37° Elabora una funcion que evalue 3 numeros y retorne el mayor
+function Mayorde3(n1,n2,n3){
+   if (n1 == 0 && n2 == 0 && n3 == 0) {
+    return "Los numeros son 0"
+   }else if(n1 > n2 && n1 > n3){
+    return n1
+   }else if(n2 > n1 && n2 > n3){
+    return n2
+   }else{
+    return n3
+   }
+}
+console.log(Mayorde3(0,0,0))
+
+//38° Elabora una funcion que decida si un estudiante aprueba o no basado e su nota
+function Aprobar(note) {
+    let aprob = 70
+    if (note >= aprob) {
+        return "Aprobado!!"
+    }else{
+        return "No aprobado :("
+    }
+}
+console.log(Aprobar(72))
+
+//39 Crea uan funcion que califique la edad (niño,adolescente,adulto,anciano)
+function Years(year) {
+   if (year < 0) {
+    return "Ingrese una edad valida"
+   }else if( year >= 0 && year < 11){
+     return "Es un niño"
+   }else if(year > 11 && year <= 18){
+     return "Es adolescente"
+   }else if(year > 18 && year <= 65){
+     return "Es adulto"
+   }else if(year > 65 && year <= 110){
+     return "Es anciano"
+   }else{
+    return "Ese men ya esta en la tumba XDDD"
+   }
+ }
+
+console.log(Years(61))
+
+//40° Desarrolla unna funcion que verifique si un usuario tiene acceso basado a su edad
+function Acces(edad) {
+    let acceso = 35
+    if (edad < 0 ) {
+        return "Ingrese una edad valida"
+    }else{
+     return edad >= acceso ? console.log("Tiene acceso"): console.log("No tiene acceso")
+    }
+}
+console.log(Acces(-2))
+
+//41° Escribe un bucle While que cuente del 1 al 100
+function unoal100() {
+    let contador = 1
+    while (contador < 100){
+        contador++
+        console.log(contador)
+    }
+}
+console.log(unoal100())
+
+//42° Implementa un bucle While que sume los primeros 50 numeros naturales
+function Natural() {
+    let acu = 0
+    contador = 1
+    while (contador <= 50) {
+        acu = contador + acu
+        contador++
+        console.log(acu)
+    }
+} 
+console.log(Natural())
+
+// 43° Crea un bucle while que muestre un saludo hasta que el usuario decida parar
+// function greetWhile() {
+//     let saludo = true
+//     while (saludo) {
+//       const userInput = prompt("Escribe 'parar' para detener el saludo ");
+//       if (userInput.toLowerCase() === "parar") {
+//         break; 
+//       } else {
+//         console.log("Holaa!!");
+//       }
+//     }
+//   }
+//   greetWhile();
+
+//44° Desarrolla un bucle while que encuentre el primer numero divisible para 7 en un rango
+function DivFor7(range) {
+    let init = 10
+    let resp = 0
+    while (init < range){
+      if (init % 7 == 0) {
+       resp = init;
+       return resp
+    }
+     init++
+    }
+    return -1
+}
+console.log(DivFor7(20))
+
+//45° Diseña un bucle while hasta que la entrada del usuario sea valida
+function Validate(check) {
+    let cont = 50
+    while (check <= cont) {
+            if (check < 0) {
+                return 'Ingresa un numero valido'
+            }else{
+            if (check % 5 == 0) {
+                let resp = check * 2;
+                return resp
+            }
+            check++
+        }
+
+    }
+}
+console.log(Validate(32))
+
+//46° implementa una funcion Swith para asiganar calificaciones basado en puntos
+function Califications(score) {
+    switch (true) {
+      case (score >= 90 && score <= 100):
+        console.log("A - Excelente");
+        break;
+      case (score >= 80 && score < 90):
+        console.log("B - Muy Bueno");
+        break;
+      case (score >= 70 && score < 80):
+        console.log("C - Bueno");
+        break;
+      case (score >= 60 && score < 70):
+        console.log("D - Suficiente");
+        break;
+      default:
+        console.log("F - Insuficiente");
+    }
+  }
+  
+console.log(Califications(89))
+
+//47° Crea una funcion que use Switch para responder a diferente comandos de un chatbot
+function ChatBot(command) {
+    switch (command.toLowerCase()) {
+      case "hola":
+        console.log("¡Hola! ¿En qué puedo ayudarte?");
+        break;
+      case "ayuda":
+        console.log("Aquí puedes encontrar información sobre mis comandos y funcionalidades.");
+        break;
+      case "horario":
+        console.log("Consulta el horario en tu ubicación actual.");
+        break;
+      case "deportes":
+        console.log("Accede a las últimas noticias del deporte en la actualidad.");
+        break;
+      default:
+        console.log("Lo siento, no entiendo ese comando. Intenta de nuevo.");
+    }
+  }
+  let chat = ChatBot('horario')
+  console.log(chat)
+
+//48° Crea un Switch para manejar diferentes metodos de pago
+function Pagos(metodo){
+    let metodos = metodo.toLowerCase()
+    switch (metodos) {
+        case 'efectivo':
+            console.log('Has decidido pagar en efectivo')
+            break;
+        case 'tarjeta':
+            console.log('Has decidido pagar en tarjeta')
+            break;
+        case 'cheque':
+            console.log('Has decidido pagar en cheque')
+            break;
+        default:
+            console.log('Ingrese un metodo de pago valido')
+            break;
+    }
+}
+console.log(Pagos('efectivo'))
+
+//49° Desarrolla un Switch para realizar calculos basicos
+function CalculsB(opc,n1,n2) {
+    switch (opc) {
+        case '+':
+            console.log(n1 + n2);
+        break;
+        case '-':
+            console.log(n1 - n2);
+        break;
+        case '*':
+            console.log(n1 * n2);
+        break;
+        case '/':
+            console.log(n1 / n2);
+        break;
+        default:
+            console.log('Signo no valido');
+         break;
+    }
+}
+CalculsB('*',4,2)
+
+//50° Diseña un Switch para cambiar de diferentes idiomas en un navegador web
+function simulateLanguageChange(languageCode) {
+    switch (languageCode) {
+      case "en": // Ingles
+        console.log("Lenguaje seleccionado: English");
+        //    console.log('Hello')
+        //    console.log('Welcome to the website')
+        function InglesContent(greeting, welcomeMessage) {
+            this.greeting = greeting,
+            this.welcomeMessage = welcomeMessage
+          };
+          let Ingles = new InglesContent('Hello!', "Welcome to the website.")
+          console.log(Ingles);
+        break;
+      case "es": // Español
+        console.log("Lenguaje seleccionado: Español");
+           // console.log('Hola!')
+           // console.log('Bienvenido a el sitio Web')
+        function SpanishContent(greeting, welcomeMessage) {
+            this.greeting = greeting,
+            this.welcomeMessage = welcomeMessage
+          };
+          let Spanish = new SpanishContent('Hola!', "Bienvenido a nuestro sitio web.")
+          console.log(Spanish);
+        break;
+      case "fr": // Frances
+        console.log("Lenguaje seleccionado: French");
+        // console.log('Bounjour')
+        // console.log('Bienvenue sur le site Web')
+        function frenchContent(greeting, welcomeMessage) {
+          this.greeting = greeting,
+          this.welcomeMessage = welcomeMessage
+        };
+        let french = new frenchContent('Bonnjour', 'Bienvenue sur le site Web.')
+        console.log(french);
+        break;
+      default:
+        console.error("Invalid language code:", languageCode);
+    }
+
+  }
+  simulateLanguageChange("en");
+
+//51° Implementa un bucle for que imprima todos los elementos de un array
+function BucleFor(){
+
+    let array = [1,2,3,4,5,6]
+    for (let i = 0; i < array.length; i++) {
+        
+        console.log(array[i]);
+        
+    }
+}
+console.log(BucleFor())
+
+//52° Escribe un bucle for que multiplique todos los elementos de un array
+function MultiplicarArray() {
+    let array = [2,4,6,8,10]
+    let resp 
+    for (let i = 0; i < array.length; i++) {
+      resp =  array[i] * 3
+        console.log(resp)
+    }
+}
+console.log(MultiplicarArray())
+
+//53° Escribe un bucle for para encontrar el numero menor de un array
+function MenorArray() {
+    let array = [2,3,4,5,8,-18]
+    let menor = array[0]
+    for (let i = 1; i < array.length; i++) {
+       if (array[i] < menor) {
+        menor = array[i]
+       };
+    }
+    return menor
+}
+console.log(MenorArray())
+
+//54° Diseña un bucle for para verficar si un array tiene un elemento especifico
+function Elements(array){
+    let buscado = 3
+    for (let i = 0; i < array.length; i++) {
+       if (array[i] === buscado) {
+        return true
+       }
+        
+    }
+    return false
+}
+  const elemento = Elements([1,2,4,5])
+  console.log(elemento)
+
+//55° Diseña un bucle que copie un array a otro
+function copyArrayUsingForLoop(sourceArray, destinationArray) {
+    for (let i = 0; i < sourceArray.length; i++) {
+      destinationArray[i] = sourceArray[i];
+    }
+  }
+  
+  const sourceArray = [1, 2, 3, 4, 5];
+  const destinationArray = [];
+  copyArrayUsingForLoop(sourceArray, destinationArray);
+  console.log(destinationArray);
+
+//56° Utiliza un bucle do-while para pedir al usuario que ingrese un numero que sea mayor que 10
+const readline = require('readline');
+
+async function promptForNumber() {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  try {
+    let number;
+    do {
+      number = await new Promise((resolve) => {
+        rl.question("Ingrese un número mayor que 10: ", (input) => {
+          resolve(parseInt(input));
+        });
+      });
+    } while (isNaN(number) || number <= 10);
+
+    console.log("Ingresaste el número:", number);
+  } finally {
+    rl.close();
+  }
+}
+
+// Call the function to start the prompt loop
+promptForNumber();
+
+//57° Implementa un bucle for-in para mostrar todas las propiedaddes de un objeto
+function MostrarProperties(obj) {
+    for (const property in obj) {
+      console.log(`Property: ${property}, Value: ${obj[property]}`);
+    }
+  }
+  const myObject = {
+    name: "Hector Romero",
+    age: 19,
+    occupation: "Ingeniero de Software"
+  };
+ MostrarProperties(myObject);
+
+//58° Usa un for-of para iterar sobre un array de nombre y saludar a cada uno
+function Saludate(nombres1) {
+    for (const variable of nombres1){
+         console.log(`Hola! ${variable}`)
+    }
+}
+const arregloname = ['Hector','Jorge', 'David']
+Saludate(arregloname)
+
+//59° Crea un forEach para aplicar un descuento del 10% a precios en un array
+function applyDiscount(prices) {
+    prices.forEach((price) => {
+      const PrecioDescuento = price * 0.9; 
+      console.log(`Precio original: ${price}, Precio con descuento: ${PrecioDescuento}`);
+    });
+  }
+  
+  const pricess = [100, 200, 350, 500];
+  applyDiscount(pricess);
+
+//60° Escribe un codigo que use map para convertir todas las temperaturas de un array de celcius a Fahrenheit
+function celsiusToFahrenheit(celsius) {
+    return celsius * (9 / 5) + 32;
+  }
+  
+  function convertTemperatures(celsiusTemperatures) {
+    const fahrenheitTemperatures = celsiusTemperatures.map(celsiusToFahrenheit);
+    return fahrenheitTemperatures;
+  }
+  
+  const celsius = [20, 25, 30, 35];
+  const fahrenheit = convertTemperatures(celsius);
+  console.log(fahrenheit);
+  
+
+
+
+
+
+
+
+
+
+
+//**************** Ejercicos para practicar *****************+/
+
+//1° ForEach
+  function Multiply(Numbers2) {
+    Numbers2.forEach((XXX) => {
+       const por2 = XXX + 4;
+       console.log(por2)
+    })
+  }
+  const aaa = [1,2,3,4,5]
+  Multiply(aaa)
+
+//2° Map
+function Fruits(frutas) {
+    return frutas.toUpperCase()
+}
+function FruitsMin(Fruits2) {
+    const frutas = Fruits2.map(Fruits)
+    return frutas
+}
+const Fruta1 = ['manzana', 'pera', 'uva']
+const frutasmin = FruitsMin(Fruta1)
+console.log(frutasmin)
+
+//3° Map 
+function eLEVADO(numeros6) {
+    return numeros6 * numeros6
+}
+function NewElevate(cuadrate) {
+    const newcuadrate = cuadrate.map(eLEVADO)
+    return newcuadrate
+}
+const numeroX =[22,44,5,12,3]
+const NumerosZ = NewElevate(numeroX) 
+console.log(NumerosZ)
+
+//4° forEach
